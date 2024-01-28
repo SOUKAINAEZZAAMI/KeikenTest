@@ -7,6 +7,8 @@ const routes: Routes = [
 
   {path: "Keiken_Test/authentification", component : LoginUserComponent},
   {path: "Keiken_Test/authentification/signin", component : LoginUserComponent},
+  { path: "", redirectTo: "Keiken_Test/authentification", pathMatch: "full"},
+
 
   {path: "Keiken_Test/utilisateurs/utilisateur/:id", component : EspaceUtilisateurComponent},
 
