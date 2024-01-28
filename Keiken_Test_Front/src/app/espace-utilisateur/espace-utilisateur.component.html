@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Explorer - Accueil</title>
+    <!-- Inclure vos fichiers CSS ici -->
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        
+        <div>Conditions météo</div>
+        <div><button (click)="getPosition()">Utiliser ma Position Actuelle</button></div>
+    </header>
+
+    <!-- Image/Animation Dynamique -->
+    <div class="weather-illustration">
+        <!-- Image ou animation représentant le temps actuel -->
+    </div>
+
+    <!-- Suggestions d'Activités -->
+    
+    <section class="activity-suggestions" >
+        <h3>Suggestions d'activités☀️</h3>
+
+        <div *ngIf="Infoweather.result">
+       <!-- <pre>{{Infoweather.result.choices|json}}</pre> -->
+        <ul class="list-group">
+            <li class="list-group-item" *ngFor="let choice of Infoweather.result.choices">
+               
+             <pre>{{choice.message.content}}</pre>
+
+                 </li>
+           
+        </ul>
+        <div><button (click)="getPosition()">autre activites</button></div>
+    </div>
+    </section>
+    <section style="background-color: #c3c6d3;" class="activity-suggestions">
+        <h5>Historique</h5>
+      
+        <!-- Vérifie si la liste de propositions n'est pas vide -->
+        <ng-container *ngIf="propositions && propositions.length > 0; else noHistory">
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Emplacement</th>
+                <th>Conditions Météo</th>
+                <th>Proposition</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let proposition of propositions">
+                <td>{{ proposition.date }}</td>
+                <td>{{ proposition.emplacement }}</td>
+                <td>{{ proposition.conditionsMeteo }}</td>
+                <td>{{ proposition.proposition }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </ng-container>
+      
+        <!-- Affiche ce message si la liste de propositions est vide -->
+        <ng-template #noHistory>
+          <p>Aucun historique disponible.</p>
+        </ng-template>
+      </section>
+      
+      
+    <!-- Réservations et Suggestions -->
+   
+
+    <!-- Menu de Navigation -->
+    <nav>
+       
+    </nav>
+
+    <!-- Inclure vos fichiers JavaScript ici si nécessaire -->
+    <!-- <script src="script.js"></script> -->
+
+</body>
+</html>
